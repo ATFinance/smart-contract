@@ -160,6 +160,7 @@ contract ATToken is Context, IERC20, Ownable {
 
     function excludeAccount(address account) external onlyOwner() {
         require(account != 0x05fF2B0DB69458A0750badebc4f9e13aDd608C7F, 'We can not exclude Pancakeswap router.');
+        require(account != 0x10ED43C718714eb63d5aA57B78B54704E256024E, 'We can not exclude PancakeswapV2 router.');
         require(!_isExcluded[account], "Account is already excluded");
         if(_rOwned[account] > 0) {
             _tOwned[account] = tokenFromReflection(_rOwned[account]);
